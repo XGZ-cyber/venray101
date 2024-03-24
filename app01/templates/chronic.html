@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据可视化demo</title>
+    <link href='{% static "styles/common.css" %}' rel="stylesheet">
+    <link href='{% static "styles/bootstrap.min.css" %}' rel="stylesheet">
+    <link href='{% static "styles/bootstrap-table.css" %}' rel="stylesheet">
+    <link href='{% static "styles/pagination.css" %}' rel="stylesheet">
+    <script src='{% static "scripts/Plugin/jquery-3.3.1.min.js" %}'></script>
+    <script src='{% static "scripts/Plugin/echarts.min.js" %}'></script>
+    <script src='{% static "scripts/Plugin/jquery.pagination.min.js" %}'></script>
+{#    <script src='{% static "scripts/common.js" %}'></script>#}
+    <script src='{% static "scripts/chronic.js" %}'></script>
+    <style>
+        .pagination .page-link {
+            padding: 10px 20px; /* 调整按钮的 padding，使其更长 */
+            margin-right: 10px; /* 增加右边距来增加按钮之间的间隔 */
+        }
+    </style>
+
+</head>
+<body>
+<!--顶部-->
+<header class="header left">
+    <div class="left nav">
+        <ul>
+            <li><i class="nav_1"></i><a href="http://127.0.0.1:8000/index">基础医疗状况</a></li>
+            <li><i class="nav_2"></i><a href="http://127.0.0.1:8000/quota">医疗指标分析</a></li>
+            <li><i class="nav_3"></i><a href="http://127.0.0.1:8000/trend">感染病趋势分析</a></li>
+            <li><i class="nav_4"></i><a href="http://127.0.0.1:8000/chronic">传染病记录</a></li>
+        </ul>
+    </div>
+    <div class="header_center left" style="position:relative">
+
+        <h2><strong>国内传染病数据分析平台</strong></h2>
+
+    </div>
+    <div class="right nav text_right">
+        <ul>
+
+        </ul>
+    </div>
+
+</header>
+<!--内容部分-->
+<div class="con left" style="width: 98%;margin-left: 1%;margin-bottom: 25px;">
+
+    <div class="div_any_child">
+          <div class="table_p" style="height: 96%;margin-top: 20px;">
+              <table>
+                  <thead><tr>
+                      <th style="font-size: 24px;">序号</th>
+                      <th style="font-size: 24px;">名称</th>
+                      <th style="font-size: 24px;">种类</th>
+                      <th style="font-size: 24px;">操作</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  {% for user in user_list %}
+                    <tr>
+                        <td style="font-size: 24px;">{{ forloop.counter }}</td>
+                        <td style="font-size: 24px;">{{ user.name }}</td>
+                        <td style="font-size: 24px;">{{ user.zhonglei }}</td>
+                        <td style="font-size: 24px;"><a href="{{ user.caozuo }}" target="_blank">查看</a></td>
+                    </tr>
+                  {% endfor %}
+
+        </tbody>
+              </table>
+          </div>
+          <div class="box">
+              <div id="pagination" class="page fl"></div>
+          </div>
+        </div>
+        {{ html_list|safe }}
+
+    </div>
+</div>
+</body>
+</html>

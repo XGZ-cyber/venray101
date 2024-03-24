@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据可视化demo</title>
+    <link href='{% static "styles/common.css" %}' rel="stylesheet">
+    <script src='{% static "scripts/Plugin/jquery-3.3.1.min.js" %}'></script>
+    <script src='{% static "scripts/Plugin/echarts.min.js" %}'></script>
+    <script src='{% static "scripts/Plugin/bmap.min.js" %}'></script>
+    <script src='{% static "http://api.map.baidu.com/api?v=2.0&ak=LelFSt6BfykGf8m3PB5zr8LaXAG2cMg6" %}'></script>
+    <script src='{% static "scripts/common.js" %}'></script>
+    <script src='{% static "scripts/quota.js" %}'></script>
+</head>
+<body>
+<!--顶部-->
+<header class="header left">
+    <div class="left nav">
+        <ul>
+            <li><i class="nav_1"></i><a href="http://127.0.0.1:8000/index">基础医疗状况</a></li>
+            <li><i class="nav_2"></i><a href="http://127.0.0.1:8000/quota">医疗指标分析</a></li>
+            <li><i class="nav_3"></i><a href="http://127.0.0.1:8000/trend">感染病趋势分析</a></li>
+            <li><i class="nav_4"></i><a href="http://127.0.0.1:8000/chronic">传染病记录</a></li>
+        </ul>
+    </div>
+    <div class="header_center left" style="position:relative">
+        
+        <h2><strong>国内传染病数据分析平台</strong></h2>
+
+    </div>
+    <div class="right nav text_right">
+        <ul>
+
+        </ul>
+    </div>
+
+</header>
+<!--内容部分-->
+<div class="con left">
+  <!--数据总概-->
+  <div class="con_div">
+      <div class="con_div_text left">
+          <div class="con_div_text01 left">
+              <img src='{% static "images/info_7.png" %}' class="left text01_img"/>
+              <div class="left text01_div">
+                  <p>全年医疗费用(亿元)</p>
+                  <p>85327.49</p>
+              </div>
+          </div>
+          <div class="con_div_text01 right">
+              <img src='{% static "images/info_8.png" %}' class="left text01_img"/>
+              <div class="left text01_div">
+                  <p>人均卫生费用(元)</p>
+                  <p>6044.09</p>
+              </div>
+          </div>
+      </div>
+      <div class="con_div_text left">
+          <div class="con_div_text01 left">
+              <img src='{% static "images/info_9.png" %}' class="left text01_img"/>
+              <div class="left text01_div">
+                  <p>全年体检人数(亿人)</p>
+                  <p class="sky">4.64</p>
+              </div>
+          </div>
+          <div class="con_div_text01 right">
+              <img src='{% static "images/info_10.png" %}' class="left text01_img"/>
+              <div class="left text01_div">
+                  <p>全年入院人数(万人)</p>
+                  <p class="sky">24686.21</p>
+              </div>
+          </div>
+      </div>
+      <div class="con_div_text left">
+
+          <div class="con_div_text01 left">
+              <img src='{% static "images/info_11.png" %}' class="left text01_img"/>
+              <div class="left text01_div">
+                  <p>西药占比</p>
+                  <p class="org">71.5%</p>
+              </div>
+          </div>
+          <div class="con_div_text01 right">
+              <img src='{% static "images/info_12.png" %}' class="left text01_img"/>
+              <div class="left text01_div">
+                  <p>中药占比</p>
+                  <p class="org">28.5%</p>
+              </div>
+          </div>
+      </div>
+  </div>
+    <!--统计分析图-->
+    <div class="div_any">
+        <div class="left div_any01">
+            <div class="div_any_child">
+                <div class="div_any_title"><img src='{% static "images/title_5.png" %}'>各类医院医师日均担负住院床次</div>
+                <p id="histogramChart1" class="p_chart"></p>
+            </div>
+            <div class="div_any_child">
+                <div class="div_any_title"><img src='{% static "images/title_6.png" %}'>各类医院医师日均诊疗人次</div>
+                <p id="histogramChart2" class="p_chart"></p>
+            </div>
+        </div>
+        <div class="left div_any01">
+            <div class="div_any_child">
+                <div class="div_any_title"><img src='{% static "images/title_7.png" %}'>乡镇，社区诊疗人次</div>
+                <p id="lineChart1" class="p_chart"></p>
+            </div>
+            <div class="div_any_child">
+                <div class="div_any_title"><img src='{% static "images/title_8.png" %}'>乡镇，社区入院人次</div>
+                <p id="lineChart2" class="p_chart"></p>
+            </div>
+        </div>
+        <div class="left div_any01">
+            <div class="div_any_child">
+                <div class="div_any_title"><img src={% static "images/title_9.png" %}>全国各类医院分布</div>
+                <p id="histogramChart3" class="p_chart"></p>
+            </div>
+            <div class="div_any_child">
+                <div class="div_any_title"><img src='{% static "images/title_10.png" %}'>全国各类医院诊疗人次</div>
+                <p id="histogramChart4" class="p_chart"></p>
+            </div>
+        </div>
+        <div class="left div_any01">
+            <div class="div_any_child">
+                <div class="div_any_title"><img src='{% static "images/title_11.png" %}'>全国公立医院数</div>
+                <p id="pieChart1" class="p_chart"></p>
+            </div>
+            <div class="div_any_child">
+                <div class="div_any_title"><img src='{% static "images/title_12.png" %}'>全国私立医院数</div>
+                <p id="pieChart2" class="p_chart"></p>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
